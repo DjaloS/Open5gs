@@ -17,9 +17,12 @@ kubectl -n open5gs get pods --watch
 
 # Configure Access to Open5Gs dashboard
 
-cat <<EOF | sudo tee open5gs-webui-gateway.yaml 
+cat <<EOF | sudo tee open5gs-webui-gateway.yaml
+
 apiVersion: networking.istio.io/v1alpha3
+
 kind: Gateway
+
 metadata:
   name: open5gs-webui-gateway
 spec:
@@ -32,6 +35,7 @@ spec:
       protocol: HTTP
     hosts:
     - "*"
+    - 
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -60,11 +64,17 @@ echo $NODE_PORT_OPEN5GS
 # Register User Equipment (UE) with detail bellow :
 
 IMSI : 208930000000001
+
 Key : 465B5CE8B199B49FAA5F0A2EE238A6BC
+
 OP : E8ED289DEBA952E4283B54E88E6183CA
+
 opType: OPC
+
 apn: internet
+
 sst: 1
+
 sd: "ffffff"
 
 
