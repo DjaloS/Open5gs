@@ -47,9 +47,9 @@ spec:
     storage: 20Gi
   accessModes:
   - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
+  persistentVolumeReclaimPolicy: Retain    
   local:
-    path: /home/vagrant/kubedata
+    path: /home/vagrant/kubedata         ### créer un repertoir kubedata vers lequel les données seront persistés 
   nodeAffinity:
     required:
       nodeSelectorTerms:
@@ -69,4 +69,4 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi
+      storage: 20Gi     
