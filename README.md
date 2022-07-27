@@ -7,4 +7,4 @@ git clone https://github.com/DjaloS/Open5gs.git
 
 cd helm-chart
 
-helm -n open5gs install -f values.yaml open ./
+helm -n open5gs install -f values.yaml open5gs ./
