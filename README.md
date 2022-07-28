@@ -87,7 +87,7 @@ tac: '7'
 
 You must change address to AMF POD address, check with below command
 
-kubectl get pod -o wide -n open5gs | grep amfAMF_POD_NAME=$(kubectl get pods -o=name -n open5gs | grep  open-amf | awk -F"/" '{print $2}')AMF_ADDR=$(kubectl -n open5gs get pod $AMF_POD_NAME --template={{.status.podIP}})
+kubectl  get  pod  -o  wide  -n open5gs  | grep amfAMF_POD_NAME= $(kubectl get pods  -o=name -n open5gs | grep  open-amf | awk -F"/" '{print $2}')AMF_ADDR=$( kubectl -n open5gs get pod $AMF_POD_NAME --template={{.status.podIP}})
 echo ${AMF_ADDR}
 
 
