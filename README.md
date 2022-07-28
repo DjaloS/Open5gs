@@ -78,7 +78,9 @@ helm dep update ./
 sudo cat values.yaml
 
 mcc: '208'
+
 mnc: '93'
+
 tac: '7'
 
 # Change AMF Address in gNB
