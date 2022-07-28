@@ -5,21 +5,29 @@ Open5gs on K8s
 Install Service mesh Istio (optional)
 
 curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.12.2  sh -
+
 cd istio-1.12.2/
+
 export PATH=$PWD/bin:$PATH
+
 istioctl install --set profile=demo -y
 
 Add a namespace label to instruct Istio to automatically inject Envoy sidecar proxies when you deploy your application later:
 
 kubectl create ns open5gs
+
 kubectl label namespace open5gs istio-injection=enabled
 
 # Install Addons packages
 
 cd ~/istio-1.12.2/samples/addons
+
 kubectl apply -f prometheus.yaml #for data sources monitoring
+
 kubectl apply -f kiali.yaml #for dashboard visualization istio
+
 kubectl apply -f jaeger.yaml #for tracing log
+
 kubectl apply -f grafana.yaml #for dashboard monitoring (visualization)
 
 
