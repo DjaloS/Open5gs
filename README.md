@@ -73,11 +73,13 @@ sd: "ffffff"
 
 
 # Configure UERANSIM (UE & gNB)
+
 Install UERANSIM Helm depedency 
 
-git clone 
+git clone https://github.com/DjaloS/openverso-charts.git
 
 cd ~/openverso-charts/charts/ueransim
+
 helm dep update ./
 
 
