@@ -35,30 +35,19 @@ spec:
         persistentVolumeClaim:
           claimName: {{ .Release.Name }}-mongodb-pv-claim
 ---
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: {{ .Release.Name }}-mongodb-pv-volume
-  labels:
-    type: local
-    project: open5gs
-spec:
-  capacity:
-    storage: 20Gi
-  accessModes:
-  - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain    
-  local:
-    path: /home/vagrant/kubedata         ### créer un repertoir kubedata vers lequel les données seront persistés 
-  nodeAffinity:
-    required:
-      nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - worker3
-
+#kind: PersistentVolume
+#apiVersion: v1
+#metadata:
+#  name: {{ .Release.Name }}-mongodb-pv-volume
+#  labels:
+#    type: local
+#spec:
+#  capacity:
+#    storage: 20Gi
+#  accessModes:
+#    - ReadWriteOnce
+#  hostPath:
+#    path: "/mnt/"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -69,4 +58,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi     
+      storage: 20Gi
+  storageClassName: rook-cephfs
