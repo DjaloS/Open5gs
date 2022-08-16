@@ -1,9 +1,9 @@
 
-# Open5gs
+# Open5gs sur K8s à l'aide de Vagrant 
 
 **Avant tout d'abord il est imperatif de créer le repertoir où persister les donner mongo dans mon cas : /home/vagrant/kubedata**
 
-Open5gs on K8s 
+ 
 
 **Créer un namespace**
 
