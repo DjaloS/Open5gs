@@ -4,6 +4,7 @@
 **Avant tout d'abord il est imperatif de créer le repertoir où persister les donner mongo dans mon cas : /home/vagrant/kubedata**
 
 Open5gs on K8s 
+
 **Créer un namespace**
 
 kubectl create ns open5gs
@@ -81,7 +82,7 @@ kubectl -n open5gs logs $AMF_POD_NAME
 
 kubectl -n open5gs logs ueransim-0 -c gnodeb
 
-**verifier les logs du l'UE avec la commande :
+**verifier les logs du l'UE avec la commande :**
 
 kubectl -n open5gs logs ueransim-0 -c ues
 
