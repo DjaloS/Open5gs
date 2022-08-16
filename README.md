@@ -1,7 +1,7 @@
 
 # Open5gs
 Open5gs on K8s 
-**Créer un namespace
+**Créer un namespace**
 
 kubectl create ns open5gs
 
@@ -70,11 +70,11 @@ kubectl get pod -n open5gs | grep ueransim
 
 # Verifier à taravers les Logs que l'UE et Connecter au gNB & AMF
 
-**verifier les logs AMF avec la commande :
+**verifier les logs AMF avec la commande :**
 
 kubectl -n open5gs logs $AMF_POD_NAME
 
-**verifier les logs du gNB avec la commande :
+**verifier les logs du gNB avec la commande :**
 
 kubectl -n open5gs logs ueransim-0 -c gnodeb
 
