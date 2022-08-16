@@ -16,11 +16,11 @@ cd helm-chart
 
 helm -n open5gs install -f values.yaml open5gs ./
 
-# Make sure all POD & Services already running 
+# Assurez vous que les pod sont en running 
 
 kubectl -n open5gs get pods --watch
 
-# Register User Equipment (UE) with detail bellow :
+# Enregistrer l'équipement utilisateur (UE) avec les détails ci-dessous 
 
 IMSI : 208930000000001
 
@@ -44,13 +44,13 @@ cd ~/openverso-charts/charts/ueransim
 
 helm dep update ./
 
-# Verification des valeurs mcc, mnc et tac:
+# Verification des valeurs mcc, mnc et tac dans L'UE:
 
 sudo cat values.yaml
 
-mcc: '208'
+mcc: '208'  ## Le du pay
 
-mnc: '93'
+mnc: '93'   ## le code de l'operateur
 
 tac: '7'
 
