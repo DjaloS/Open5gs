@@ -1,7 +1,7 @@
 
 # Open5gs
 Open5gs on K8s 
-# Créer un namespace
+**Créer un namespace
 
 kubectl create ns open5gs
 
@@ -53,7 +53,7 @@ tac: '7'
 
 # Preciser l'IP du pod AMF dans le gNB
 
-kubectl  get  pod  -o  wide  -n open5gs  | grep amfAMF_POD_NAME= $(kubectl get pods -o=name  -n  open5gs | grep open-amf | awk -F "/"  '{print $2}')AMF_ADDR=$( kubectl   -n  open5gs get pod $AMF_POD_NAME  --template={{.status.podIP}})
+kubectl  get  pod  -o  wide  -n open5gs  | grep amfAMF_POD_NAME= $(kubectl get pods -o=name  -n  open5gs | grep open-amf | awk -F"/" '{print $2}')AMF_ADDR=$( kubectl   -n  open5gs get pod $AMF_POD_NAME  --template={{.status.podIP}})
 echo ${AMF_ADDR}
 
 sed -i "s/\${AMF_ADDR}/${AMF_ADDR}/g" resources/gnb.yaml
@@ -68,16 +68,17 @@ helm -n open5gs install -f values.yaml ueransim ./
 
 kubectl get pod -n open5gs | grep ueransim
 
-# Verify Logs UE Connected to gNB & AMF
-check the AMF Logs with the command :
+# Verifier à taravers les Logs que l'UE et Connecter au gNB & AMF
+
+**verifier les logs AMF avec la commande :
 
 kubectl -n open5gs logs $AMF_POD_NAME
 
-check the gNB Logs with the command :
+**verifier les logs du gNB avec la commande :
 
 kubectl -n open5gs logs ueransim-0 -c gnodeb
 
-check the UE Logs with the command :
+**verifier les logs du l'UE avec la commande :
 
 kubectl -n open5gs logs ueransim-0 -c ues
 
