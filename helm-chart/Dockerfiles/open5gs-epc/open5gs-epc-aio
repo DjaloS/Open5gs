@@ -1,6 +1,6 @@
 FROM ubuntu:focal
 
-MAINTAINER Christopher Adigun <adigunca@amazon.com>
+MAINTAINER Souleymane Diallo <souleymaned441@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
