@@ -1,57 +1,21 @@
 
 # Open5gs
 Open5gs on K8s 
-
-# Prérequis 
-Install Service mesh Istio (optional)
-
-curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.12.2  sh -
-
-cd istio-1.12.2/
-
-export PATH=$PWD/bin:$PATH
-
-istioctl install --set profile=demo -y
-
-Add a namespace label to instruct Istio to automatically inject Envoy sidecar proxies when you deploy your application later:
+# Créer un namespace
 
 kubectl create ns open5gs
 
-kubectl label namespace open5gs istio-injection=enabled
-
-# Install Addons packages
-
-cd ~/istio-1.12.2/samples/addons
-
-kubectl apply -f prometheus.yaml #for data sources monitoring
-
-kubectl apply -f grafana.yaml #for dashboard monitoring (visualization)
-
-# Deploy open5gs with helm-chart
+# Deployer open5gs avec helm-chart
 
 git clone https://github.com/DjaloS/Open5gs.git
 
 cd helm-chart
 
-kubectl create ns open5gs
-
 helm -n open5gs install -f values.yaml open5gs ./
-
-helm uninstall open -n open5gs
 
 # Make sure all POD & Services already running 
 
 kubectl -n open5gs get pods --watch
-
-# Configure Access to Open5Gs dashboard
-
-kubectl apply -f open5gs-webui-gateway.yaml
-
-NODE_PORT_OPEN5GS=$(kubectl -n istio-system get svc istio-ingressgateway \
-  --output=jsonpath='{range .spec.ports[1]}{.nodePort}')
-  
-  
-echo $NODE_PORT_OPEN5GS
 
 # Register User Equipment (UE) with detail bellow :
 
@@ -69,10 +33,7 @@ sst: 1
 
 sd: "ffffff"
 
-
-# Configure UERANSIM (UE & gNB)
-
-Install UERANSIM Helm depedency 
+# Configuration du Réseau d'accès (UE & gNB)
 
 git clone https://github.com/DjaloS/openverso-charts.git
 
@@ -81,7 +42,7 @@ cd ~/openverso-charts/charts/ueransim
 helm dep update ./
 
 
-# check value in UE
+# Verification des valeurs dans mcc, mnc et tac:
 
 sudo cat values.yaml
 
@@ -91,7 +52,7 @@ mnc: '93'
 
 tac: '7'
 
-# Change AMF Address in gNB
+# Preciser l'IP du pod AMF dans le gNB
 
 You must change address to AMF POD address, check with below command
 
@@ -101,13 +62,11 @@ echo ${AMF_ADDR}
 
 sed -i "s/\${AMF_ADDR}/${AMF_ADDR}/g" resources/gnb.yaml
 
-
-# verify with the command:
+# verifier avec la commande:
 
 sudo cat resources/gnb.yaml
 
-
-# Running UERANSIM
+# Installation de L'UERANSIM
 
 helm -n open5gs install -f values.yaml ueransim ./
 
@@ -126,13 +85,8 @@ check the UE Logs with the command :
 
 kubectl -n open5gs logs ueransim-0 -c ues
 
-# Getting access to Grafana
-Getting Grafana url
 
-kubectl -n istio-system expose deployment grafana --port=3000  --name=grafana-http --type NodePort
-NODE_PORT_GRAFANA=$(kubectl -n istio-system get svc grafana-http \
-  --output=jsonpath='{range.spec.ports[0]}{.nodePort}')
-echo $NODE_PORT_GRAFANA
+
 
 
 
