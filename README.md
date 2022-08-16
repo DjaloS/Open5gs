@@ -1,5 +1,8 @@
 
 # Open5gs
+
+**Avant tout d'abord il est imperatif de créer le repertoir où persister les donner mongo dans mon cas : /home/vagrant/kubedata**
+
 Open5gs on K8s 
 **Créer un namespace**
 
