@@ -41,8 +41,7 @@ cd ~/openverso-charts/charts/ueransim
 
 helm dep update ./
 
-
-# Verification des valeurs dans mcc, mnc et tac:
+# Verification des valeurs mcc, mnc et tac:
 
 sudo cat values.yaml
 
@@ -54,11 +53,8 @@ tac: '7'
 
 # Preciser l'IP du pod AMF dans le gNB
 
-You must change address to AMF POD address, check with below command
-
-kubectl  get  pod  -o  wide  -n open5gs  | grep amfAMF_POD_NAME= $(kubectl get pods  -o=name -n open5gs | grep  open-amf | awk -F"/" '{print $2}')AMF_ADDR=$( kubectl -n open5gs get pod $AMF_POD_NAME --template={{.status.podIP}})
+kubectl  get  pod  -o  wide  -n open5gs  | grep amfAMF_POD_NAME= $(kubectl get pods -o=name -n open5gs | grep open-amf | awk -F"/" '{print $2}')AMF_ADDR=$( kubectl   -n open5gs get pod $AMF_POD_NAME --template={{.status.podIP}})
 echo ${AMF_ADDR}
-
 
 sed -i "s/\${AMF_ADDR}/${AMF_ADDR}/g" resources/gnb.yaml
 
