@@ -58,6 +58,7 @@ kubectl get pod -n open5gs | grep ueransim
 ```
 # Verifier à taravers les Logs que l'UE et Connecter au gNB & AMF
 ```shell
+
 verifier les logs AMF avec la commande :
 
 kubectl -n open5gs logs $AMF_POD_NAME
@@ -69,6 +70,7 @@ kubectl -n open5gs logs ueransim-0 -c gnodeb
 verifier les logs du l'UE avec la commande :
 
 kubectl -n open5gs logs ueransim-0 -c ues
+
 ```
 
 
