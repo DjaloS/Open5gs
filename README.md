@@ -1,7 +1,7 @@
 
 # Open5gs sur K8s à l'aide de Vagrant 
 
-Avant tout d'abord il est imperatif de créer le repertoir où persister les donner mongo dans mon cas : /home/vagrant/kubedata
+Avant tout d'abord il est imperatif de créer le repertoir où persister les donner mongo dans mon cas : /home/vagrant/kubedata dans le worker3
 
 ```shell
 Créer un namespace
@@ -14,7 +14,7 @@ git clone https://github.com/DjaloS/Open5gs.git
 cd helm-chart
 helm -n open5gs install -f values.yaml open5gs ./
 ```
-# Assurez vous que les pod sont en running 
+# On s'assure que les pod sont en running avec la commande
 ```shell
 kubectl -n open5gs get pods --watch
 ```
@@ -56,17 +56,17 @@ sudo cat resources/gnb.yaml
 helm -n open5gs install -f values.yaml ueransim ./
 kubectl get pod -n open5gs | grep ueransim
 ```
-# Verifier à taravers les Logs que l'UE et Connecter au gNB & AMF
+# Verification de la connectivité du gNB & AMF à travers les logs
 ```shell
-verifier les logs AMF avec la commande :
+verifier les logs AMF avec la commande
 
 kubectl -n open5gs logs $AMF_POD_NAME
 
-verifier les logs du gNB avec la commande :
+verifier les logs du gNB avec la commande
 
 kubectl -n open5gs logs ueransim-0 -c gnodeb
 
-verifier les logs du l'UE avec la commande :
+verifier les logs du l'UE avec la commande
 
 kubectl -n open5gs logs ueransim-0 -c ues
 
