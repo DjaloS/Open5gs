@@ -47,7 +47,7 @@ kubectl  get  pod  -o  wide  -n open5gs  | grep amfAMF_POD_NAME= $(kubectl get p
 echo ${AMF_ADDR}
 sed -i "s/\${AMF_ADDR}/${AMF_ADDR}/g" resources/gnb.yaml
 ```
-# verifier avec la commande:
+# verification de la config avec la commande:
 ```sehll
 sudo cat resources/gnb.yaml
 ```
