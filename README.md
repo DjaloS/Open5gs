@@ -41,7 +41,7 @@ mcc: '208'  ## Le code du pay
 mnc: '93'   ## le code de l'operateur
 tac: '7'
 ```
-# Preciser l'IP du pod AMF dans le gNB
+# Configurer l'IP de l'AMF dans le gNB
 ```shell
 kubectl  get  pod  -o  wide  -n open5gs  | grep amfAMF_POD_NAME= $(kubectl get pods -o=name  -n  open5gs | grep open-amf | awk -F"/" '{print $2}')AMF_ADDR=$( kubectl   -n  open5gs get pod $AMF_POD_NAME  --template={{.status.podIP}})
 echo ${AMF_ADDR}
