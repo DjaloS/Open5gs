@@ -11,7 +11,7 @@ kubectl create ns open5gs
 # Deployer open5gs avec helm-chart
 ```shell
 git clone https://github.com/DjaloS/Open5gs.git
-cd helm-chart
+cd Open5gs/helm-chart
 helm -n open5gs install -f values.yaml open5gs ./
 ```
 # On s'assure que les pod sont en running avec la commande
