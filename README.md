@@ -56,6 +56,10 @@ echo ${AMF_ADDR}
 
 sed -i "s/\${AMF_ADDR}/${AMF_ADDR}/g" resources/gnb.yaml
 ```
+
+![image](https://user-images.githubusercontent.com/109952373/191764993-281bf8a4-d289-4e87-82c5-a93ae4737260.png)
+
+
 # verification de la config avec la commande:
 ```sehll
 sudo cat resources/gnb.yaml
