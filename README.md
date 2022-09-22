@@ -115,6 +115,50 @@ kubectl -n open5gs logs ueransim-0 -c ues
 ```
 ![image](https://user-images.githubusercontent.com/109952373/191772792-39eb8797-c3d4-46c7-b9ba-466d3c7b83f8.png)
 
+# Monitoring avec la stack Prometheus-grafana 
+
+Ajouter d'abord le depôt avec helm3: 
+```shell
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+```
+Ensuit Creér un namespace monitoring:
+```shell
+kubectl create ns monitoring 
+```
+Et finir par le deploiement de la stack avec la commande:
+```shell
+helm install my-kube-prometheus-stack prometheus-community/kube-prometheus-stack --version 40.1.0 -n monitoring
+```
+![image](https://user-images.githubusercontent.com/109952373/191783758-ff795abf-72da-41ec-a205-cba60cb5f2da.png)
+
+Nous voyons aussi sur quelle machine tourne chaque pod 
+
+ET les services :
+
+![image](https://user-images.githubusercontent.com/109952373/191781243-53da6e15-c613-4210-b97e-425259d82769.png)
+
+Pour acceder aux dahboard Grafana et Prometheus, leurs service doivent être de type **NodePort
+
+**Patchages des ports des service Prometheus et Grafana en NodePort
+
+```shell
+kubectl patch svc my-kube-prometheus-stack-grafana -p '{"spec": {"type": "NodePort"}}' -n monitoring
+kubectl patch svc my-kube-prometheus-stack-prometheus -p '{"spec": {"type": "NodePort"}}' -n monitoring
+```
+![image](https://user-images.githubusercontent.com/109952373/191782025-668ea565-4eb5-46ea-b486-b1925757aff8.png)
+
+disponible respectivement sur le ports: 30519 (Prometheus) et 31365(Grafana)
+
+Se connecter sur les dashboard comme suit: 
+
+Grafana tourne sur le master(**192.168.56.10**) :  **http://192.168.56.10:31365**
+
+![image](https://user-images.githubusercontent.com/109952373/191785825-c14bb161-4906-4680-9aae-9f17d8a22873.png)
+
+Prometheus tourne sur le worker2: **192.168.56.102**
+
+
+prom-operator
 
 
 
