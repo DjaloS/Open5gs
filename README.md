@@ -75,11 +75,12 @@ AMF_POD_NAME=$(kubectl get pods -o=name -n open5gs | grep  open-amf | awk -F"/" 
 AMF_ADDR=$(kubectl -n open5gs get pod $AMF_POD_NAME --template={{.status.podIP}})
 echo ${AMF_ADDR}
 192.16.219.68                               
-
+```
 ![image](https://user-images.githubusercontent.com/109952373/191769950-685ebb57-7b1e-4180-a924-6527b47c75fb.png)
 
 IL doit vous retourner l'IP du l'AMF
 
+```shell
 sed -i "s/\${AMF_ADDR}/${AMF_ADDR}/g" resources/gnb.yaml
 ```
 
