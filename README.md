@@ -19,8 +19,17 @@ helm -n open5gs install -f values.yaml open5gs ./
 kubectl -n open5gs get pods --watch
 ```
 # Enregistrer l'équipement utilisateur (UE) avec les détails ci-dessous 
-se connecter d'abord sur le dashboard du open-webui 
+D'abord recuperer le port sur lequel il est disponible open-webui est disponible : voir l'image ci-dessous 
 
+![image](https://user-images.githubusercontent.com/109952373/191764993-281bf8a4-d289-4e87-82c5-a93ae4737260.png)
+
+comme on peut le voir sur la capture, l'interface est exposé sur le port: 31659
+
+Se connecter sur le dashboard du open-webui en caisissant l'IP de la machine qur laquelle le pod open-webui tourne sur le navigateur: 
+
+![image](https://user-images.githubusercontent.com/109952373/191766926-9ef25813-ad62-4202-a857-2ffef0d75711.png)
+
+comme on peut le voit sur la capture, open-webui tourne sur le master donc on saisi : **http://192.168.56.10:31659/**
 
 ```shell
 IMSI : 208930000000001
@@ -56,9 +65,6 @@ echo ${AMF_ADDR}
 
 sed -i "s/\${AMF_ADDR}/${AMF_ADDR}/g" resources/gnb.yaml
 ```
-
-![image](https://user-images.githubusercontent.com/109952373/191764993-281bf8a4-d289-4e87-82c5-a93ae4737260.png)
-
 
 # verification de la config avec la commande:
 ```sehll
