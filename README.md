@@ -19,6 +19,9 @@ helm -n open5gs install -f values.yaml open5gs ./
 kubectl -n open5gs get pods --watch
 ```
 # Enregistrer l'équipement utilisateur (UE) avec les détails ci-dessous 
+se connecter d'abord sur le dashboard du open-webui 
+
+
 ```shell
 IMSI : 208930000000001
 Key : 465B5CE8B199B49FAA5F0A2EE238A6BC
@@ -43,8 +46,14 @@ tac: '7'
 ```
 # Configurer l'IP de l'AMF dans le gNB
 ```shell
-kubectl  get  pod  -o  wide  -n open5gs  | grep amfAMF_POD_NAME= $(kubectl get pods -o=name  -n  open5gs | grep open-amf | awk -F"/" '{print $2}')AMF_ADDR=$( kubectl   -n  open5gs get pod $AMF_POD_NAME  --template={{.status.podIP}})
+kubectl get pod -o wide -n open5gs | grep amf
+
+AMF_POD_NAME=$(kubectl get pods -o=name -n open5gs | grep  open-amf | awk -F"/" '{print $2}')
+
+AMF_ADDR=$(kubectl -n open5gs get pod $AMF_POD_NAME --template={{.status.podIP}})
 echo ${AMF_ADDR}
+192.16.219.68                               # IL doit vous retourner l'IP du l'AMF
+
 sed -i "s/\${AMF_ADDR}/${AMF_ADDR}/g" resources/gnb.yaml
 ```
 # verification de la config avec la commande:
