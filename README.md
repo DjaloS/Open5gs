@@ -162,6 +162,7 @@ Grafana tourne sur le master(**192.168.56.10**) :  **http://192.168.56.10:31365*
 ![image](https://user-images.githubusercontent.com/109952373/191785825-c14bb161-4906-4680-9aae-9f17d8a22873.png)
 ID: admin
 mdp:prom-operator 
+![image](https://user-images.githubusercontent.com/109952373/192536618-ceb00bc4-52ab-4bdc-9e71-0c703abc264d.png)
 
 Prometheus tourne sur le worker2: **192.168.56.102**
 
