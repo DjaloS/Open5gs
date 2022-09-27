@@ -29,7 +29,7 @@ NB : Commande pour changer le port en nodePort:
 ```shell
 kubectl patch svc open5gs-webui -p '{"spec": {"type": "NodePort"}}' -n open5gs
 ```
-comme on peut le voir sur la capture, l'interface est exposé sur le port: 32479
+comme on peut le voir sur la capture, l'interface est exposé sur le port: 316...
 
 Se connecter sur le dashboard du open-webui en caisissant l'IP de la machine qur laquelle le pod open-webui tourne sur le navigateur: 
 
