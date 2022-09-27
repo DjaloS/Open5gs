@@ -18,6 +18,8 @@ helm -n open5gs install -f values.yaml open5gs ./
 ```shell
 kubectl -n open5gs get pods --watch
 ```
+![image](https://user-images.githubusercontent.com/109952373/192489268-8b50d02a-8077-482b-9d5f-1be5afe4be3e.png)
+
 # Enregistrer l'équipement utilisateur (UE) avec les détails ci-dessous 
 D'abord recuperer le port sur lequel il est disponible open-webui est disponible : voir l'image ci-dessous 
 
