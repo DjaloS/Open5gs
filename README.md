@@ -121,6 +121,10 @@ kubectl -n open5gs logs ueransim-0 -c ues
 ```
 ![image](https://user-images.githubusercontent.com/109952373/191772792-39eb8797-c3d4-46c7-b9ba-466d3c7b83f8.png)
 
+Ont pet peut voir l'interface monter En se connectant dans le container du l'UE:
+![image](https://user-images.githubusercontent.com/109952373/192750645-87994ce2-e019-43e9-b190-6ec8bc6820d8.png)
+
+
 # Monitoring avec la stack Prometheus-grafana 
 
 Ajouter d'abord le depôt avec helm3: 
