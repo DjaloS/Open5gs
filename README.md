@@ -76,7 +76,7 @@ on place le nom du pod amf dans une variable pour le mettre dans le gnb de sort 
 ```shell
 kubectl get pod -o wide -n open5gs | grep amf
 
-AMF_POD_NAME=$(kubectl get pods -o=name -n open5gs | grep  open-amf | awk -F"/" '{print $2}')  
+AMF_POD_NAME=$(kubectl get pods -o=name -n open5gs | grep  open5gs-amf | awk -F"/" '{print $2}')  
 
 AMF_ADDR=$(kubectl -n open5gs get pod $AMF_POD_NAME --template={{.status.podIP}})
 echo ${AMF_ADDR}
